@@ -1,8 +1,15 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router'
 
+// Componenets
+import { Spinner } from 'components/Spinner'
+import { MenuNavigation } from 'components/MenuNavigation'
+
 // Pages
 import Login from 'pages/Login'
 import GenerateReceipt from 'pages/GenerateReceipt'
+import Dashboard from 'pages/Dashboard'
+import UserConfiguration from 'pages/UserConfiguration'
+import CheckPayment from 'pages/CheckPayment'
 
 // Context
 import { useAuthContext } from 'context/AuthContext'
@@ -10,15 +17,21 @@ import { useAuthContext } from 'context/AuthContext'
 function App() {
   const { isAuth, isLoading } = useAuthContext()
 
-  if (isLoading) return;
+  if (isLoading) return <Spinner color='#00F' loading={isLoading} isCenter={true} />;
 
   return (
     <BrowserRouter>
       <Routes>
-          <Route exact index element={!isAuth ? <Login /> : <Navigate to='/home' /> } />
-          <Route exact path='/home'>
-            <Route exact index element={isAuth ? <GenerateReceipt /> : <Navigate to='/' /> }  />  
+          <Route exact path='/' element={!isAuth ? <Login /> : <Navigate to='/home' /> } />
+
+          <Route exact path='/home' element={isAuth ? <MenuNavigation /> : <Navigate to='/'/>}>
+            <Route exact index element={<GenerateReceipt />}  />
+            <Route exact path='check-payment' element={<CheckPayment />} />
+            <Route exact path='dashboard' element={<Dashboard />} />
+            <Route exact path='user-configuration' element={<UserConfiguration />} />
           </Route>
+
+          <Route path='*' element={<Navigate to='/' />} />
       </Routes>
     </BrowserRouter>
   );

@@ -40,8 +40,6 @@ export function AuthContextProvider({children}) {
       await configureSession(response.user);
     } catch (error) {
       throw error;
-    } finally {
-      setIsLoading(false);
     }
   }
 
@@ -55,7 +53,6 @@ export function AuthContextProvider({children}) {
       setIsAuth(false);
       setUser({});
       manageCookie(false)
-      setIsLoading(false);
     }
   }
 
@@ -81,6 +78,7 @@ export function AuthContextProvider({children}) {
     } else {
       Cookies.remove('auth')
     }
+    setIsLoading(false)
   }
 
   async function configureSession(userData) {
@@ -99,11 +97,12 @@ export function AuthContextProvider({children}) {
   }
 
   useEffect(() => {
+    setIsLoading(true)
     if (Cookies.get('auth')) {
       const cancelar = auth.getAuth().onIdTokenChanged(configureSession)
       return () => cancelar()
     }
-    
+
     setIsLoading(false)
   }, [])
 

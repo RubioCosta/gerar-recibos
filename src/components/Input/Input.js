@@ -2,7 +2,13 @@
 // Styles
 import { StyledDiv } from './styles' 
 
-export function Input({ id, name, type = 'text', placeholder } = {}) {
+export function Input({ 
+  id, 
+  name, 
+  type = 'text', 
+  placeholder,
+  onChange
+} = {}) {
   return (
     <StyledDiv>
       <input 
@@ -10,6 +16,7 @@ export function Input({ id, name, type = 'text', placeholder } = {}) {
         type={type}
         name={name}
         placeholder={placeholder}
+        onChange={onChange}
       />
     </StyledDiv>
   )

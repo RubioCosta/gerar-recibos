@@ -6,7 +6,7 @@ export const StyledDiv = styled.div`
     border: none;
     width: 100%;
     height: 30px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color:rgb(235, 230, 230);
     padding-left: 10px;
     border-radius: 5px;
     margin-bottom: 10px;

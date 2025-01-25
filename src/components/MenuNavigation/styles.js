@@ -19,11 +19,12 @@ export const StyledDiv = styled.div`
     flex-direction: column;
     flex: 1;
     height: 60px;
+    font-size: 0.8em;
     text-decoration: none;
     color: #FFFFFF;
   }
 
-  a:hover {
+  a:hover, .active {
     background-color: rgb(87, 44, 243);;
   }
 

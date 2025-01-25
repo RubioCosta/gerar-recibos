@@ -1,17 +1,20 @@
+import { useState } from 'react'
 
 // Styles
 import { StyledDiv } from './styles'
 
-// Context
-import { useAuthContext } from 'context/AuthContext'
+// Components
+import { Input } from 'components/Input';
 
 export default function GenerateReceipt() {
-  const { logout } = useAuthContext();
+  const [date, setDate] = useState('');
+  const [description, setDescription] = useState('');
+
   return (
     <StyledDiv>
-      <button onClick={() => logout()}>
-        sair
-      </button>
+      <form>
+        
+      </form>
     </StyledDiv>
   )
 }

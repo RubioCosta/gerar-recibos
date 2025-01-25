@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router"
+import { Outlet, NavLink } from "react-router"
 
 // Styles
 import { StyledDiv } from './styles'
@@ -8,22 +8,37 @@ export function MenuNavigation() {
     <StyledDiv>
       <header>
         <nav>
-          <Link to='/home'>
+          <NavLink 
+            to='/home/generate-receipt'
+            className={({ isActive }) => isActive ? 'active' : ''} 
+          >
             <i className="bi bi-file-earmark-arrow-down-fill"></i>
             Recibo
-          </Link>
-          <Link to='/home/check-payment'>
-          <i className="bi bi-patch-check-fill"></i>
+          </NavLink>
+
+          <NavLink 
+            to='/home/check-payment'
+            className={({ isActive }) => isActive ? 'active' : ''}  
+          >
+            <i className="bi bi-patch-check-fill"></i>
             Pagamento
-          </Link>
-          <Link to='/home/user-configuration'>
-          <i class="bi bi-people-fill"></i>
+          </NavLink>
+
+          <NavLink 
+            to='/home/user-configuration'
+            className={({ isActive }) => isActive ? 'active' : ''} 
+          >
+            <i class="bi bi-people-fill"></i>
             Cadastro
-          </Link>
-          <Link to='/home/dashboard'>
-          <i className="bi bi-bar-chart-fill"></i>
+          </NavLink>
+
+          <NavLink 
+            to='/home/dashboard'
+            className={({ isActive }) => isActive ? 'active' : ''} 
+          >
+            <i className="bi bi-bar-chart-fill"></i>
             Grafico
-          </Link>
+          </NavLink>
         </nav>
       </header>
       <Outlet />

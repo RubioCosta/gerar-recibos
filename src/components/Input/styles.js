@@ -11,4 +11,10 @@ export const StyledDiv = styled.div`
     border-radius: 5px;
     margin-bottom: 10px;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+ 
 `

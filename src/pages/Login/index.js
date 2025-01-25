@@ -8,27 +8,35 @@ import { useAuthContext } from 'context/AuthContext'
 import showToast from 'utils/toastConfig'
 
 // Styles
-import { StyledDiv } from 'styles/index'
+import { StyledDiv } from './styles'
 
 // Components
 import { Input } from 'components/Input'
 import { Button, LoginGoogle } from 'components/Button';
 
 export default function Login() {
-  const { test } = useAuthContext();
+  const { loginGoogle, login, isLoading } = useAuthContext();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   async function handlerLogin(e){
     e.preventDefault();
+    if (!email) return showToast('warning','Campo e-mail é obrigatório!')
+    if (!password) return showToast('warning','Campo senha é obrigatório!')
+
+    try {
+      await login(email, password)
+    } catch(error) {
+      showToast("warning", "Não foi possível fazer o login, tente mais tarde!")
+    }
+
   }
 
   async function handlerLoginGoogle(){
     try {
-      test()
+      await loginGoogle();
     } catch(error) {
-      console.log(error)
       showToast("warning", "Não foi possível fazer o login, tente mais tarde!")
     }
   }
@@ -59,6 +67,7 @@ export default function Login() {
           />
           <Button 
             description='Entrar'
+            isLoading={isLoading}
           />
         </form>
         <hr />

@@ -16,4 +16,5 @@ export const StyledDiv = styled.div`
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+ 
 `

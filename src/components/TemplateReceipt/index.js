@@ -17,7 +17,8 @@ const mockData = [
 
 export function generateTemplateReceipt(day, month, year, description, isHalfValue, data) {
   const defaultValue = "------------------------------------#-----------------------------------------"
-  const descriptionSecond = `referente 50% do valor da mensalidade para garantir a vaga em ${Number(year) + 1}`
+  // const descriptionSecond = `referente 50% do valor da mensalidade para garantir a vaga em ${Number(year) + 1}`
+  const descriptionSecond = ``
   let html = `
     <html>
       <head>
@@ -30,6 +31,7 @@ export function generateTemplateReceipt(day, month, year, description, isHalfVal
   `
 
   data.forEach((user, index) => {
+    console.log(user.value)
     html += `
       <div class='recibo'>
         <div class="area-recibo"">
@@ -41,7 +43,7 @@ export function generateTemplateReceipt(day, month, year, description, isHalfVal
             </div>
             <div class="valorN">
                 <label>VALOR:</label>
-                <input type="text" value="${formattedValue(isHalfValue ? (user.value/2).toFixed(2) : user.value)}" readOnly class="browser-default" />
+                <input type="text" value="R$ ${user.value}" readOnly class="browser-default" />
             </div>
           </div>
           <div class="area-recibo-corpo">

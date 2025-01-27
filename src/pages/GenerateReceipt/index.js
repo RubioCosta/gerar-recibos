@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { jsPDF } from 'jspdf';
+import html2pdf from 'html2pdf.js';
 import { ToastContainer } from 'react-toastify';
 
 // Styles
@@ -26,19 +26,16 @@ export default function GenerateReceipt({ emailUser }) {
 
     if (!data.length) return showToast('warning', 'Nenhum cadastro identificado!')
 
-    const doc = new jsPDF('landscape');
-
     const [day, month, year] = date.split('/');
     const html = generateTemplateReceipt(day, month, year, description, false, data);
 
-    doc.html(html, {
-      callback: function (doc) {
-        doc.save('conteudo.pdf');
-      },
-      margin: [10, 10, 10, 10],
-      x: 10,
-      y: 10,
-    });
+    const options = {
+      filename:     'conteudo.pdf',
+      image:        { type: 'jpeg', quality: 100 },
+      html2canvas:  { dpi: 192, letterRendering: true },
+      jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' }
+    };
+    html2pdf().from(html).set(options).save();
   }
 
   return (
@@ -57,7 +54,7 @@ export default function GenerateReceipt({ emailUser }) {
           name='description'
           value={description}
           placeholder='Descrição'
-          onChange={(e) => setDate(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
         />
         <Button 
           description='Gerar Recibo'

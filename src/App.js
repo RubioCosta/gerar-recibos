@@ -15,7 +15,7 @@ import CheckPayment from 'pages/CheckPayment'
 import { useAuthContext } from 'context/AuthContext'
 
 function App() {
-  const { isAuth, isLoading } = useAuthContext()
+  const { isAuth, isLoading, user } = useAuthContext()
 
   if (isLoading) return <Spinner color='#00F' loading={isLoading} isCenter={true} />;
 
@@ -25,10 +25,10 @@ function App() {
           <Route exact path='/' element={!isAuth ? <Login /> : <Navigate to='/home/generate-receipt' /> } />
 
           <Route exact path='/home' element={isAuth ? <MenuNavigation /> : <Navigate to='/'/>}>
-            <Route exact index path='generate-receipt' element={<GenerateReceipt />}  />
+            <Route exact index path='generate-receipt' element={<GenerateReceipt emailUser={user?.emailFormatted} />}  />
             <Route exact path='check-payment' element={<CheckPayment />} />
             <Route exact path='dashboard' element={<Dashboard />} />
-            <Route exact path='user-configuration' element={<UserConfiguration />} />
+            <Route exact path='user-configuration' element={<UserConfiguration emailUser={user?.emailFormatted} />} />
           </Route>
 
           <Route path='*' element={<Navigate to='/' />} />

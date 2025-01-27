@@ -28,7 +28,7 @@ export function MenuNavigation() {
             to='/home/user-configuration'
             className={({ isActive }) => isActive ? 'active' : ''} 
           >
-            <i class="bi bi-people-fill"></i>
+            <i className="bi bi-people-fill"></i>
             Cadastro
           </NavLink>
 

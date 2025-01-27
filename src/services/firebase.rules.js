@@ -2,7 +2,7 @@ import { db } from './firebase'
 const { ref, get, set, remove, update} = require('firebase/database');
 
 //create('/user/124', { valor: 124 })
-async function create(path, data) {
+export async function create(path, data) {
   try {
     const dataRef = ref(db, path);
     await set(dataRef, data);
@@ -11,7 +11,7 @@ async function create(path, data) {
   }
 }
 
-async function edit(path, data) {
+export async function edit(path, data) {
   try {
     const dataRef = ref(db, path);
     await update(dataRef, data);
@@ -21,7 +21,7 @@ async function edit(path, data) {
 }
 
 //getById('/user/123')
-async function getById(path) {
+export async function getById(path) {
   try {
     const dataRef = ref(db, path);
     const data = await get(dataRef);
@@ -37,33 +37,29 @@ async function getById(path) {
 }
 
 //getAll('/user')
-async function getAll(path) {
+export async function getAll(path) {
   try {
-    try {
-      const dataRef = ref(db, path);
-      const data = await get(dataRef);
-  
-      if (data.exists()) {
+    const dataRef = ref(db, path);
+    const data = await get(dataRef);
 
-        const result = Object.entries(data.val()).map(([key, value]) => ({
-          id: key,
-          ...value
-        }));
+    if (data.exists()) {
 
-        return result;
-      }
-  
-      throw new Error("Usuário não localizado!")
-    } catch(err) {
-      throw err
+      const result = Object.entries(data.val()).map(([key, value]) => ({
+        id: key,
+        ...value
+      }));
+
+      return result;
     }
+
+    throw new Error("Usuário não localizado!")
   } catch(err) {
-    console.log(err)
+    throw err
   }
 }
 
 //exclude('user/124')
-async function exclude(path) {
+export async function exclude(path) {
   try {
     const dataRef = ref(db, path);
     await remove(dataRef)
@@ -71,13 +67,3 @@ async function exclude(path) {
     throw err
   }
 }
-
-const firebaseRules = {
-  create,
-  getById,
-  getAll,
-  exclude,
-  edit
-}
-
-export default firebaseRules;

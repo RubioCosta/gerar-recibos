@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ToastContainer } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
 
 // Styles
 import { StyledDiv } from './styles'
@@ -26,21 +27,26 @@ export default function UserConfiguration({ emailUser }) {
     if (!value) return showToast('warning', 'Campo valor é obrigatório!')
       
     try {
+      if (!emailUser) throw new Error('Email não identificado!')
+      const uuid = uuidv4(); 
+
       const dataUser = {
         name,
         school,
         phone,
-        value
+        value,
+        active: true
       }
       
-      await create(`${emailUser}/users`, dataUser)
+      await create(`${emailUser}/users/${uuid}`, dataUser)
 
-      showToast('seccess', `${name} cadastrado com sucesso!`)
+      showToast('success', `${name} cadastrado com sucesso!`)
       setName('')
       setSchool('')
       setPhone('')
       setValue('')
     } catch(error) {
+      console.log(error)
       showToast('warning', 'Não foi possível efetuar o cadastro, tente mais tarde!')
     }
   }

@@ -39,26 +39,22 @@ export async function getById(path) {
 //getAll('/user')
 export async function getAll(path) {
   try {
-    try {
-      const dataRef = ref(db, path);
-      const data = await get(dataRef);
-  
-      if (data.exists()) {
+    const dataRef = ref(db, path);
+    const data = await get(dataRef);
 
-        const result = Object.entries(data.val()).map(([key, value]) => ({
-          id: key,
-          ...value
-        }));
+    if (data.exists()) {
 
-        return result;
-      }
-  
-      throw new Error("Usuário não localizado!")
-    } catch(err) {
-      throw err
+      const result = Object.entries(data.val()).map(([key, value]) => ({
+        id: key,
+        ...value
+      }));
+
+      return result;
     }
+
+    throw new Error("Usuário não localizado!")
   } catch(err) {
-    console.log(err)
+    throw err
   }
 }
 

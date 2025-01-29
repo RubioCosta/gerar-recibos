@@ -11,10 +11,11 @@ export function Input({
   type = 'text', 
   placeholder,
   onChange,
-  mask = null
+  mask = null,
+  className = ''
 } = {}) {
   return (
-    <StyledDiv>
+    <StyledDiv className={className}>
       <input 
         id={id}
         type={type}

@@ -1,6 +1,8 @@
 import { styled } from 'styled-components'
 
 export const StyledDiv = styled.div`
+  flex: 9;
+
   input {
     outline: none;
     border: none;

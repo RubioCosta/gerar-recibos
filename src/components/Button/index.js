@@ -36,3 +36,20 @@ export function LoginGoogle({
     </StyledDiv>
   )
 }
+
+export function LoginSearch({
+  description,
+  action
+}) {
+  return (
+    <StyledDiv>
+      <button 
+        onClick={action}
+        className='btn-search'
+      >
+        <i className="bi bi-search"></i>
+        {description}
+      </button>
+    </StyledDiv>
+  )
+}

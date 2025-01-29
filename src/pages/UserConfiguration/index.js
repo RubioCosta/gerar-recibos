@@ -8,6 +8,7 @@ import { StyledDiv } from './styles'
 // Components
 import { Input, InputValue } from 'components/Input';
 import { Button } from 'components/Button';
+import { ListEditUsers } from 'components/ListEditUsers'
 
 // Utils
 import showToast from 'utils/toastConfig'
@@ -88,6 +89,7 @@ export default function UserConfiguration({ emailUser }) {
           description='Cadastrar'
         />
       </form>
+      <ListEditUsers />
       <ToastContainer />
     </StyledDiv>
   )

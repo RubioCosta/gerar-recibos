@@ -16,7 +16,7 @@ export const StyledDiv = styled.div`
 
   .list {
     overflow: auto;
-    max-height: calc( 100vh - 350px );
+    max-height: calc( 100vh - 400px );
   }
 
   .list::-webkit-scrollbar {

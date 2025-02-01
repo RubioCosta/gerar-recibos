@@ -1,8 +1,10 @@
 import { withMask } from 'use-mask-input';
 import { NumericFormat } from 'react-number-format';
+import Switch from 'rc-switch';
+
 
 // Styles
-import { StyledDiv } from './styles'
+import { StyledDiv, StyledSwitch } from './styles'
 
 export function Input({ 
   id, 
@@ -35,12 +37,14 @@ export function InputValue({
   type = 'text',
   placeholder,
   onChange,
+  value
 } = {}) {
   return (
     <StyledDiv>
       <NumericFormat
         id={id}
         name={name}
+        value={value}
         placeholder={placeholder}
         type={type}
         thousandSeparator="."
@@ -52,6 +56,21 @@ export function InputValue({
         customInput="input"
       />
     </StyledDiv>
+  )
+}
 
+export function InputSwitch({ 
+  placeholder,
+  onChange,
+  value
+} = {}) {
+  return (
+    <StyledSwitch>
+      <Switch 
+        onChange={onChange} 
+        checked={value} 
+      />
+      <label>{placeholder}</label>
+    </StyledSwitch>
   )
 }

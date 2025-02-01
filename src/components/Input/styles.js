@@ -20,3 +20,15 @@ export const StyledDiv = styled.div`
   }
  
 `
+
+export const StyledSwitch = styled.div`
+  display: flex;
+  justify-content: fle;
+  align-items: center;
+  margin-bottom: 10px;
+
+  label {
+    margin-left: 5px;
+  }
+
+`

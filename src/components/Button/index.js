@@ -5,13 +5,13 @@ import { StyledDiv } from './styles'
 
 export function Button({
   description,
-  onChange,
+  action,
   isLoading = false
 }) {
   return (
     <StyledDiv>
       <button 
-        onChange={onChange}
+        onClick={action}
       >
         <Spinner loading={isLoading} size={5} />
         {description}

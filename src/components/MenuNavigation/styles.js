@@ -3,6 +3,7 @@ import { styled } from 'styled-components'
 export const StyledDiv = styled.div` 
   header {
     position: fixed;
+    z-index: 2;
     bottom: 0;
     width: 100%;
     height: 60px;

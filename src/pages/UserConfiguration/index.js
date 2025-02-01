@@ -89,7 +89,7 @@ export default function UserConfiguration({ emailUser }) {
           description='Cadastrar'
         />
       </form>
-      <ListEditUsers />
+      <ListEditUsers emailUser={emailUser} />
       <ToastContainer />
     </StyledDiv>
   )

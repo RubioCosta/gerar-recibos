@@ -43,7 +43,7 @@ export function generateTemplateReceipt(day, month, year, description, isHalfVal
             </div>
             <div class="valorN">
                 <label>VALOR:</label>
-                <input type="text" value="R$ ${parseInt(user.value) / 2}" readOnly class="browser-default" />
+                <input type="text" value="R$ ${parseInt(user.value) / 2},00" readOnly class="browser-default" />
             </div>
           </div>
           <div class="area-recibo-corpo">

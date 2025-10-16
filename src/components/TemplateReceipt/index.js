@@ -53,7 +53,7 @@ export function generateTemplateReceipt(day, month, year, description, isHalfVal
             </div>
             <div class="area-2">
                 <label>a quantia de</label>
-                <input type="text" value="${parseInt(user.value).toString().extenso()} Reais ${defaultValue}" readOnly class="browser-default" />
+                <input type="text" value="${parseInt(user.value/2).toString().extenso()} Reais ${defaultValue}" readOnly class="browser-default" />
             </div>
             <div class="area-hidden-1">
                 <div class="linha"></div>
